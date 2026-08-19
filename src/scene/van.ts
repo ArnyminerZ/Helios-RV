@@ -48,11 +48,16 @@ function boxFootprintUV(uFrom: number, uTo: number, halfW: number): [number, num
 }
 
 //A (forward, right) local offset to world local metres (east, north), given the van's centre + heading.
+//`right` is deliberately the mirror of the compass-right direction (rotated -90deg from forward, not +90):
+//the van footprint is symmetric in v, so which physical side "right" points to is inconsequential, but the
+//(forward, right) pair as a whole MUST map a CCW ring in (u, v) to a CCW ring in (east, north) -- the sign
+//buildings.ts's back-face cull assumes. The other rotation direction has a determinant of -1 (a reflection),
+//which silently flips every footprint's winding and makes the cull treat front-facing walls as back-facing.
 function toWorld(pose: VanPose, u: number, v: number): Point
 {
     const h  = pose.headingDeg * DEG;
-    const fe = Math.sin(h); const fn = Math.cos(h);  //forward unit vector
-    const re = Math.cos(h); const rn = -Math.sin(h); //right unit vector
+    const fe = Math.sin(h); const fn = Math.cos(h);   //forward unit vector
+    const re = -Math.cos(h); const rn = Math.sin(h);  //right unit vector
     return [pose.e + u * fe + v * re, pose.n + u * fn + v * rn];
 }
 
