@@ -32,6 +32,24 @@ cross your sky.
 
 ---
 
+## About this fork
+
+**Helios-RV** is a fork of [Helios](https://github.com/ReikanYsora/Helios) by
+[Jérôme CREMOUX](https://github.com/ReikanYsora). Its one goal is to *add*
+**vehicle mode**: instead of a fixed house, the scene can track and draw a live
+RV/van from a `device_tracker`/`person` entity, following it as it moves and
+snapping onto the road while driving, with every existing feature below
+(power flow, sun, weather, timeline) working the same as it always has.
+
+This fork aims to **extend, not replace** the original project. Everything
+in this README describes the shared Helios experience the two projects have
+in common; vehicle mode is an opt-in addition (`structure-mode: van` in the
+card config) layered on top of it. If you don't need vehicle mode, or you're
+looking for the original project to follow, report issues, or support its
+author, that's all upstream at [ReikanYsora/Helios](https://github.com/ReikanYsora/Helios).
+
+---
+
 ## Install
 
 1. Open **HACS**, search for **Helios**, install it.
